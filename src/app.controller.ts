@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from "@nestjs/common";
+import { Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -31,6 +31,7 @@ export class AppController {
   @Get('/stop-bullmq')
   async stopBullMQ(): Promise<string> {
     console.log('/stop-bullmq');
-    return this.appService.addStopToBullMQ();
+    // return this.appService.addStopToBullMQ();
+    return ' ';
   }
 }
