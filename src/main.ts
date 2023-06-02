@@ -17,6 +17,10 @@ async function bootstrap() {
   });
   const { addQueue, removeQueue, setQueues, replaceQueues } = queues;
   app.use('/admin/queues', serverAdapter.getRouter());
-  await app.listen(3001);
+
+  const PORT = process.env.PORT ?? 3001;
+  await app.listen(PORT, () => {
+    console.log(`Server running at: http://localhost:${PORT}`, 'Bootstrap');
+  });
 }
 bootstrap();

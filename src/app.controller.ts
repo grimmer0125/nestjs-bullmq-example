@@ -1,9 +1,12 @@
 import { Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
-
+import { CatsService } from './cats/cats.service';
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    private readonly catsService: CatsService,
+  ) {}
 
   @Get()
   getHello(): string {
@@ -19,7 +22,7 @@ export class AppController {
   @Get('/start-bullmq')
   async startBullMQ(): Promise<string> {
     console.log('/start-bullmq');
-    return this.appService.addStartToBullMQ();
+    return this.catsService.addStartToBullMQ();
   }
 
   @Get('/stop-bull')

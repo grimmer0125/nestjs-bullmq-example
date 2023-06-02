@@ -5,6 +5,7 @@ import { QUEUE_NAME } from './bullMQ.constants';
 @Processor(QUEUE_NAME)
 export class BullMQProcessor extends WorkerHost {
   async process(job: Job<any, any, string>): Promise<any> {
+    console.debug('bullMQ process is called');
     switch (job.name) {
       case 'start':
         return this.start(job);

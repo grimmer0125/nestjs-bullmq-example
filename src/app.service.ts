@@ -26,22 +26,8 @@ export class AppService {
   }
 
   async addStartToBullMQ() {
-    const job = await this.bullMQQueue.add('start', {});
-
-    /** alternative 1 */
-    // const queueEvents = new QueueEvents(BULLMQ_QUEUE_NAME, {
-    //   connection: {
-    //     host: '0.0.0.0',
-    //     port: 6380,
-    //   },
-    // });
-
-    /** reuse queueEvents. Each queueEvents need one Redis connection
-     * ref: https://docs.bullmq.io/guide/connections
-     */
-    const events = this.bullMQEventsListener.queueEvents;
-    const jobReturn = await job.waitUntilFinished(events);
-    return jobReturn;
+    /** return value is BullMQ Job, not string */
+    return await this.bullMQQueue.add('start', {});
   }
 
   addStopToBull() {
@@ -49,6 +35,7 @@ export class AppService {
   }
 
   async addStopToBullMQ() {
+    /** return value is BullMQ Job, not string */
     return await this.bullMQQueue.add('stop', {});
   }
 }
