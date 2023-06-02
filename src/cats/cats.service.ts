@@ -9,7 +9,8 @@ import { BullMQEventsListener } from '../bullMQ/bullMQ.eventsListener';
 @Injectable()
 export class CatsService {
   constructor(
-    @InjectBullMQQueue(BULLMQ_QUEUE_NAME) readonly bullMQQueue: Queue,
+    @InjectBullMQQueue(BULLMQ_QUEUE_NAME)
+    readonly bullMQQueue: Queue<any, any, string>,
     private readonly bullMQEventsListener: BullMQEventsListener,
   ) {}
 
